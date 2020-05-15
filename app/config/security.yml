@@ -29,12 +29,14 @@ security:
             anonymous:    true
             remember_me:
                 secret:   '%secret%'
-                lifetime: 120 # 1 week in seconds
-                path:     /                
+                lifetime: 20 # 1 week in seconds
+                path:     /
+                token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
+             
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_USER }
         
