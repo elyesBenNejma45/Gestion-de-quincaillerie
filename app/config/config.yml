@@ -25,7 +25,7 @@ framework:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-        cookie_lifetime: 10
+        # cookie_lifetime: 10
     fragments: ~
     http_method_override: true
     assets: ~
@@ -78,8 +78,18 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: "akrem@gmail.com"
-        sender_name: "akrem"
-
+        address: "elyes.bennejmaa@gmail.com"
+        sender_name: "Elyes"
+    # registration:
+    #     confirmation:
+    #         from_email: 
+    #             address:        elyes.nole@gmail.com
+    #             sender_name:    "Ely" 
+    #         enabled:    true # change to false to disable registration email confirmation
+    # resetting:
+    #     email:
+    #         from_email: 
+    #             address:        elyes.nole@gmail.com
+    #             sender_name:    "Ely"    
 webpack_encore:
     output_path: "%kernel.root_dir%/../web/build/"

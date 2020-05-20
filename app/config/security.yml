@@ -22,14 +22,18 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                use_forward: false
                 require_previous_session: false
+                always_use_default_target_path: false
+                default_target_path: /home
 
 
             logout:       true
             anonymous:    true
+            switch_user: true
             remember_me:
                 secret:   '%secret%'
-                lifetime: 20 # 1 week in seconds
+                lifetime: 604800  # 1 week in seconds
                 path:     /
                 token_provider: 'Symfony\Bridge\Doctrine\Security\RememberMe\DoctrineTokenProvider'
              
