@@ -1,5 +1,22 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
-  "build/runtime.js": "/build/runtime.js"
+  "build/cbpShop.js": "/build/cbpShop.js",
+  "build/cbpShop.min.js": "/build/cbpShop.min.js",
+  "build/component.css": "/build/component.css",
+  "build/component.js": "/build/component.js",
+  "build/default.css": "/build/default.css",
+  "build/default.js": "/build/default.js",
+  "build/footer.css": "/build/footer.css",
+  "build/footer.js": "/build/footer.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/fonts/bpicons.ttf": "/build/fonts/bpicons.355a3faa.ttf",
+  "build/fonts/bpicons.eot": "/build/fonts/bpicons.adbb29ab.eot",
+  "build/fonts/bpicons.woff": "/build/fonts/bpicons.fc0e975b.woff",
+  "build/fonts/pgicons.eot": "/build/fonts/pgicons.1f0719b8.eot",
+  "build/fonts/pgicons.woff": "/build/fonts/pgicons.87600be7.woff",
+  "build/fonts/pgicons.ttf": "/build/fonts/pgicons.9b69f856.ttf",
+  "build/images/bpicons.svg": "/build/images/bpicons.d6e48e04.svg",
+  "build/images/pgicons.svg": "/build/images/pgicons.159def13.svg",
+  "build/images/tshirt.svg": "/build/images/tshirt.82ef6401.svg"
 }

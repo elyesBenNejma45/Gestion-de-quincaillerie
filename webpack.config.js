@@ -7,7 +7,6 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-
     /*
      * ENTRY CONFIG
      *
@@ -18,6 +17,13 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('cbpShop', './assets/js/cbpShop.js')
+    .addEntry('cbpShop.min', './assets/js/cbpShop.min.js')
+    .addEntry('component', './assets/js/component.js')
+    .addEntry('default', './assets/js/default.js')
+    .addEntry('footer', './assets/js/footer.js')
+
+
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 

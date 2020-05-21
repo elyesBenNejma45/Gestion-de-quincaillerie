@@ -8,6 +8,45 @@
       "css": [
         "/build/app.css"
       ]
+    },
+    "cbpShop": {
+      "js": [
+        "/build/runtime.js",
+        "/build/cbpShop.js"
+      ]
+    },
+    "cbpShop.min": {
+      "js": [
+        "/build/runtime.js",
+        "/build/cbpShop.min.js"
+      ]
+    },
+    "component": {
+      "js": [
+        "/build/runtime.js",
+        "/build/component.js"
+      ],
+      "css": [
+        "/build/component.css"
+      ]
+    },
+    "default": {
+      "js": [
+        "/build/runtime.js",
+        "/build/default.js"
+      ],
+      "css": [
+        "/build/default.css"
+      ]
+    },
+    "footer": {
+      "js": [
+        "/build/runtime.js",
+        "/build/footer.js"
+      ],
+      "css": [
+        "/build/footer.css"
+      ]
     }
   }
 }
