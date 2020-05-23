@@ -9,34 +9,94 @@
         "/build/app.css"
       ]
     },
-    "cbpShop": {
+    "animate": {
       "js": [
         "/build/runtime.js",
-        "/build/cbpShop.js"
-      ]
-    },
-    "cbpShop.min": {
-      "js": [
-        "/build/runtime.js",
-        "/build/cbpShop.min.js"
-      ]
-    },
-    "component": {
-      "js": [
-        "/build/runtime.js",
-        "/build/component.js"
+        "/build/animate.js"
       ],
       "css": [
-        "/build/component.css"
+        "/build/animate.css"
       ]
     },
-    "default": {
+    "contact": {
       "js": [
         "/build/runtime.js",
-        "/build/default.js"
+        "/build/contact.js"
+      ]
+    },
+    "font-awesome.min": {
+      "js": [
+        "/build/runtime.js",
+        "/build/font-awesome.min.js"
       ],
       "css": [
-        "/build/default.css"
+        "/build/font-awesome.min.css"
+      ]
+    },
+    "gmaps": {
+      "js": [
+        "/build/runtime.js",
+        "/build/gmaps.js"
+      ]
+    },
+    "html5shiv": {
+      "js": [
+        "/build/runtime.js",
+        "/build/html5shiv.js"
+      ]
+    },
+    "jquery": {
+      "js": [
+        "/build/runtime.js",
+        "/build/jquery.js"
+      ]
+    },
+    "jquery.prettyPhoto": {
+      "js": [
+        "/build/runtime.js",
+        "/build/jquery.prettyPhoto.js"
+      ]
+    },
+    "jquery.scrollUp.min": {
+      "js": [
+        "/build/runtime.js",
+        "/build/jquery.scrollUp.min.js"
+      ]
+    },
+    "main": {
+      "js": [
+        "/build/runtime.js",
+        "/build/main.js"
+      ],
+      "css": [
+        "/build/main.css"
+      ]
+    },
+    "prettyPhoto": {
+      "js": [
+        "/build/runtime.js",
+        "/build/prettyPhoto.js"
+      ],
+      "css": [
+        "/build/prettyPhoto.css"
+      ]
+    },
+    "price-range": {
+      "js": [
+        "/build/runtime.js",
+        "/build/price-range.js"
+      ],
+      "css": [
+        "/build/price-range.css"
+      ]
+    },
+    "responsive": {
+      "js": [
+        "/build/runtime.js",
+        "/build/responsive.js"
+      ],
+      "css": [
+        "/build/responsive.css"
       ]
     },
     "footer": {

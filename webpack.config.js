@@ -17,10 +17,18 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('cbpShop', './assets/js/cbpShop.js')
-    .addEntry('cbpShop.min', './assets/js/cbpShop.min.js')
-    .addEntry('component', './assets/js/component.js')
-    .addEntry('default', './assets/js/default.js')
+    .addEntry('animate', './assets/js/animate.js')
+    .addEntry('contact', './assets/js/contact.js')
+    .addEntry('font-awesome.min', './assets/js/font-awesome.min.js')
+    .addEntry('gmaps', './assets/js/gmaps.js')
+    .addEntry('html5shiv', './assets/js/html5shiv.js')
+    .addEntry('jquery', './assets/js/jquery.js')
+    .addEntry('jquery.prettyPhoto', './assets/js/jquery.prettyPhoto.js')
+    .addEntry('jquery.scrollUp.min', './assets/js/jquery.scrollUp.min.js')
+    .addEntry('main', './assets/js/main.js')
+    .addEntry('prettyPhoto', './assets/js/prettyPhoto.js')
+    .addEntry('price-range', './assets/js/price-range.js')
+    .addEntry('responsive', './assets/js/responsive.js')
     .addEntry('footer', './assets/js/footer.js')
 
 
