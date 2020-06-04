@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title "Create a new Category"%} 
+
+{% block body %}
+    <div class="container mt-4">
+    <h1> Edit Category </h1>
+    <div class="col-xs-4">
+        {{ form_start(form) }}
+            {{ form_widget(form.name,{'attr':{'type':'text','class':'form-control','placeholder':'Title...'}}) }}
+            <br>
+            {{ form_widget(form.Edit,{'attr':{'type':'text','class':'btn btn-primary','placeholder':'Submit...'}}) }}        </center>
+        {{ form_end(form) }}
+    </div>
+</div>   
+{% endblock %}

@@ -18,7 +18,7 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/admin/show", name="blog_list")
+     * @Route("/admin/contact", name="blog_list")
      */
     public function redirectAction()
     {

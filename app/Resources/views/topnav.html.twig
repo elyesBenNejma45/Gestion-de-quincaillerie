@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Ma Quincaillerie</a>
+          <a class="navbar-brand" href="{{ path('homepage') }}">Ma Quincaillerie</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -15,6 +15,18 @@
                 <p class="navbar-text">
                   {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
                 </p>
+              {% if is_granted("ROLE_ADMIN") %}
+                <li>
+                  <a href=" {{ path('admin.category.index') }}">Category</a>
+                </li>            
+              {% endif %}                 
+                <li>
+              {% if is_granted("ROLE_ADMIN") %}
+                  <a href=" {{ path('blog_list') }}">Contact</a>
+              {% elseif is_granted("ROLE_USER") %}
+                  <a href=" {{ path('blog_list') }}">Contacte</a>
+              {% endif %}
+                </li>                
                 <li>
                   <a href="{{ path('fos_user_security_logout') }}">
                   {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -25,14 +37,6 @@
                   <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 </li>
               {% endif %}
-                <li>
-              {% if is_granted("ROLE_ADMIN") %}
-                  <a href=" {{ path('blog_list') }}">Contact</a>
-              {% elseif is_granted("ROLE_USER") %}
-                  <a href=" {{ path('blog_list') }}">Contacte</a>
-              {% endif %}
-
-                </li>
           </ul>
         </div>
       </div>

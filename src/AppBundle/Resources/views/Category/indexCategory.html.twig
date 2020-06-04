@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Category"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage Category  </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> Title</th>
+        </tr>
+        </thread>
+        <tbody>
+            {% for category in categories|sort((a,b) => a.name <=> b.name) %}
+            <tr>
+                <td> {{category.name}}</td>
+                <td> 
+                    <a href="{{path('admin.category.edit',{id:category.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.category.delete',{ id:category.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure?')">
+                    <input type ="hidden" name = "_method" value = "DELETE"></input>
+                    <button class ="btn btn-danger"> Delete  </button>  
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.category.add')}}" class="btn btn-primary">Create a new Category</a>
+    </div>
+</div>  
+
+{% endblock %}
