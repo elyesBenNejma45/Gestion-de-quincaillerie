@@ -3,22 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category
+ * SubCategory
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="sub_category")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SubCategoryRepository")
  */
-class Category
+class SubCategory
 {
-    public function __construct()
-    {
-        $this->subCategories = new ArrayCollection();
-    }
-
     /**
      * @var int
      *
@@ -31,15 +24,15 @@ class Category
     /**
      * @var string|null
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true, unique=true)
-     * @Assert\NotBlank
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
-
+    
     /**
-     * @ORM\OneToMany(targetEntity="SubCategory", mappedBy="category")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories"))
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id",onDelete="SET NULL",nullable=true)
      */
-    private $subCategories;
+    private $category;
 
     /**
      * Get id.
@@ -56,7 +49,7 @@ class Category
      *
      * @param string|null $name
      *
-     * @return Category
+     * @return SubCategory
      */
     public function setName($name = null)
     {
@@ -76,21 +69,21 @@ class Category
     }
 
     /**
-     * Get the value of subCategories
+     * Get the value of category
      */ 
-    public function getSubCategories()
+    public function getCategory()
     {
-        return $this->subCategories;
+        return $this->category;
     }
 
     /**
-     * Set the value of subCategories
+     * Set the value of category
      *
      * @return  self
      */ 
-    public function setSubCategories($subCategories)
+    public function setCategory($category)
     {
-        $this->subCategories = $subCategories;
+        $this->category = $category;
 
         return $this;
     }

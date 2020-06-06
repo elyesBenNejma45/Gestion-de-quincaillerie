@@ -18,7 +18,10 @@
               {% if is_granted("ROLE_ADMIN") %}
                 <li>
                   <a href=" {{ path('admin.category.index') }}">Category</a>
-                </li>            
+                </li>
+                <li>
+                  <a href=" {{ path('admin.subcategory.index') }}">Sub-Category</a>
+                </li>             
               {% endif %}                 
                 <li>
               {% if is_granted("ROLE_ADMIN") %}

@@ -74,7 +74,7 @@ class CategoryController extends Controller
      *@param Category $category
      * 
      */
-    public function delete(Category $category,Request $request)
+    public function delete(Category $category)
     {
             $em = $this->getDoctrine()->getManager();
             $em->remove($category);
@@ -82,6 +82,6 @@ class CategoryController extends Controller
             $this->addFlash("success", "Deleted with succes ");
             return $this->redirectToRoute("admin.category.index");
 
-    }
+    }  
 }    
 

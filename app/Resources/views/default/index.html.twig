@@ -111,12 +111,10 @@
 									<div id="sub-category-{{category.name}}" class="panel-collapse collapse">
 										<div class="panel-body">
 											<ul>
-												<li><a href="#">Nike </a> </li>
-												<li><a href="#">Under Armour </a></li>
-												<li><a href="#">Adidas </a></li>
-												<li><a href="#">Puma</a></li>
-												<li><a href="#">ASICS </a></li>
-											</ul>
+												{% for subcategory in category.subcategories %}
+												<li><a href="#">{{subcategory.name}} </a> </li>
+												{% endfor %}
+											</ul> 
 										</div>
 									</div>
 								</div>

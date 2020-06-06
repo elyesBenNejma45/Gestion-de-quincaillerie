@@ -22,9 +22,10 @@
                 <td> {{category.name}}</td>
                 <td> 
                     <a href="{{path('admin.category.edit',{id:category.id})}}" class= "btn btn-success"> Edit </a>
-                    <form method ="POST" action="{{path('admin.category.delete',{ id:category.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure?')">
-                    <input type ="hidden" name = "_method" value = "DELETE"></input>
-                    <button class ="btn btn-danger"> Delete  </button>  
+                    <form method ="POST" action="{{path('admin.category.delete',{ id:category.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{category.name}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
                 </td>
             </tr>
             {% endfor %}

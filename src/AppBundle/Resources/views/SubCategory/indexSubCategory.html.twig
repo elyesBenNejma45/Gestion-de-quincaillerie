@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Sub-Category"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage Sub-Category </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> Name </th>
+        <th> Category's Name </th>
+        </tr>
+        </thread>
+        <tbody>
+            {% for subcategory in subcategories|sort((a,b) => a.name <=> b.name) %}
+            <tr>
+                <td> {{subcategory.name}}</td>
+                {% if subcategory.category is null %}
+                    <td> No Category </td>
+                {% else %}    
+                    <td> {{subcategory.category.name}}</td>
+                {% endif %}
+                <td> 
+                    <a href="{{path('admin.subcategory.edit',{id:subcategory.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.subcategory.delete',{ id:subcategory.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{subcategory.name}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.subcategory.add')}}" class="btn btn-primary">Create a new Sub-Category</a>
+    </div>
+</div>  
+
+{% endblock %}
