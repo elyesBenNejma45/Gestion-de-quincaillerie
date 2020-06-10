@@ -29,10 +29,15 @@ class SubCategory
     private $name;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories"))
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id",onDelete="SET NULL",nullable=true)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="subCategory")
+     */
+    private $subProducts;    
 
     /**
      * Get id.
@@ -84,6 +89,26 @@ class SubCategory
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of subProducts
+     */ 
+    public function getSubProducts()
+    {
+        return $this->subProducts;
+    }
+
+    /**
+     * Set the value of subProducts
+     *
+     * @return  self
+     */ 
+    public function setSubProducts($subProducts)
+    {
+        $this->subProducts = $subProducts;
 
         return $this;
     }

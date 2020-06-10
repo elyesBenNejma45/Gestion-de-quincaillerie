@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Product"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage Product </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> Name </th>
+        <th> Price </th>
+        <th> Tva </th>
+        <th> Description </th>
+        <th> DateStore </th>
+        <th> Image </th>
+        <th> Subcategory </th>
+        </tr>
+        </thread>
+        <tbody>
+            {% for product in products|sort((a,b) => a.libelle <=> b.libelle) %}
+            <tr>
+                <td> {{product.libelle}}</td>
+                <td> {{product.price}}</td>
+                <td> {{product.tva}}</td>
+                <td> {{product.description}}</td>
+                <td> {{product.storeDate|date("m/d/Y")}}</td>
+                <td><a href="{{ asset('uploads/products/' ~ product.image) }}" target="_blank">View Image Here</a></td>
+
+                {% if product.subcategory is null %}
+                    <td> No SubCategory </td>
+                {% else %}    
+                    <td> {{product.subcategory.name}}</td>
+                {% endif %}
+                <td> 
+                    <a href="{{path('admin.product.edit',{id:product.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.product.delete',{ id:product.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{product.libelle}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.product.add')}}" class="btn btn-primary">Create a new Product</a>
+    </div>
+</div>  
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title "Create a new Product"%} 
+
+{% block body %}
+    <div class="container mt-4">
+    <h1> Create a new Product </h1>
+    <div class="col-xs-4">
+        {{ form_start(form) }}
+            {{ form_widget(form.libelle,{'attr':{'type':'text','class':'form-control','placeholder':'Title...'}}) }}
+            <br>
+            {{ form_widget(form.price,{'attr':{'type':'text','class':'form-control','placeholder':'price...'}}) }}
+            <br>
+            {{ form_widget(form.tva,{'attr':{'type':'text','class':'form-control','placeholder':'tva...'}}) }}
+            <br>
+            {{ form_widget(form.description,{'attr':{'type':'text','class':'form-control','placeholder':'description...'}}) }}
+            <br>
+            {{ form_widget(form.storeDate,{'attr':{'type':'text','class':'form-control','placeholder':'Store date'}}) }}
+            <br>
+            {{ form_widget(form.image,{'attr':{'type':'text','class':'form-control'}}) }}
+            <br>
+            {{ form_widget(form.subCategory,{'attr':{'type':'text','class':'form-control'}}) }}
+            <br>                                                
+            {{ form_widget(form.Submit,{'attr':{'type':'text','class':'btn btn-primary','placeholder':'Edit...'}}) }}        </center>
+            <br>    
+        {{ form_end(form) }}
+    </div>
+</div>   
+{% endblock %}
