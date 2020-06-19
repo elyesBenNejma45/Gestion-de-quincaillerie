@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title "Create a new Counter"%} 
+
+{% block body %}
+    <div class="container mt-4">
+    <h1> Create a new Counter </h1>
+    <div class="col-xs-4">
+        {{ form_start(form) }}
+            {{ form_widget(form.countNum,{'attr':{'type':'text','class':'form-control','placeholder':'Counter Number...'}}) }}
+            <br>
+            {{ form_widget(form.Submit,{'attr':{'type':'text','class':'btn btn-primary','placeholder':'Submit...'}}) }}        </center>
+        {{ form_end(form) }}
+    </div>
+</div>   
+{% endblock %}

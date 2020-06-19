@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Counter"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage Counter  </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> counter number</th>
+        </tr>
+        </thread>
+        <tbody>
+            {% for counter in counters|sort((a,b) => a.countNum <=> b.countNum) %}
+            <tr>
+                <td> {{counter.countNum}}</td>
+                <td> 
+                    <a href="{{path('admin.counter.edit',{id:counter.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.counter.delete',{ id:counter.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{counter.countNum}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.counter.add')}}" class="btn btn-primary">Create a new Counter</a>
+    </div>
+</div>  
+
+{% endblock %}
