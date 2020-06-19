@@ -3,12 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use AppBundle\Entity\Category;
 use AppBundle\Form\ProductType;
 use AppBundle\Form\EditProductType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class ProductController extends Controller
 {
@@ -18,14 +18,26 @@ class ProductController extends Controller
      * @Route("/admin/ProductByUser", name="admin.product.index")
      * 
      */
-    public function indexAdmin()
+    public function listAction(Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $user = $this->getUser();        
-        $products =  $this->getDoctrine()->getRepository(Product::class)->findAll();
-        return $this->render("AppBundle:Products:indexProduct.html.twig", compact("products"));
-    }
+
+        $products = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findAllByPagination();
+        /** 
+         * @var $paginator \Knp\Component\pager\Paginator;
+         */
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
     
+        // parameters to template
+        return $this->render('AppBundle:Products:indexProduct.html.twig', ['products' => $pagination]);
+    }    
     /**
      * 
      *@Route("/admin/product/new",name ="admin.product.add")
@@ -122,5 +134,24 @@ class ProductController extends Controller
             $this->addFlash("success", "Deleted with succes ");
             return $this->redirectToRoute("admin.product.index");
 
-    }     
+    }
+
+    /**
+     * @Route("/searchProduct/{id}", name="admin.product.searchProduct")
+     */
+    public function searchProductAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        $searchId =  $request->get('id');
+        $products = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findAllBySubCategory($searchId);
+        $em = $this->getDoctrine()->getManager(); 
+        $categories = $em->getRepository(Category::class)->findAll();
+        return $this->render('AppBundle:Products:indexSearchProduct.html.twig', [
+            "products" => $products,
+            "categories" => $categories            
+
+        ]);
+    }      
 }

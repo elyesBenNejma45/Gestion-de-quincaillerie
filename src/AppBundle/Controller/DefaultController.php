@@ -18,12 +18,24 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository(Category::class)->findAll();
-        $products = $em->getRepository(Product::class)->findAll();
+        $products = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->findAllByPagination();
+        /** 
+         * @var $paginator \Knp\Component\pager\Paginator;
+         */
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            6 /*limit per page*/
+        );
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             "categories" => $categories,
-            "products" => $products
+            "products" => $pagination
 
         ]);
-    }
+    }  
 }

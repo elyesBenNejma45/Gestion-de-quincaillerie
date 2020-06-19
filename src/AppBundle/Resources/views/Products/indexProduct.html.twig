@@ -51,6 +51,8 @@
     <div class="text-right">
         <a href="{{path('admin.product.add')}}" class="btn btn-primary">Create a new Product</a>
     </div>
+    <div class="navigation text-center">
+        {{ knp_pagination_render(products)}}
+    </div>
 </div>  
-
 {% endblock %}

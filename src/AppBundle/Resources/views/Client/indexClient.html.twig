@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Client"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage Client  </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> firstname</th>
+        <th> lastname</th>
+        <th> email</th>
+        <th> address</th>
+        <th> phone Number</th>
+
+        </tr>
+        </thread>
+        <tbody>
+            {% for client in clients|sort((a,b) => a.firstname <=> b.firstname) %}
+            <tr>
+                <td> {{client.firstname}}</td>
+                <td> {{client.lastname}}</td>
+                <td> {{client.email}}</td>
+                <td> {{client.address}}</td>
+                <td> {{client.phoneNumber}}</td>
+
+                <td> 
+                    <a href="{{path('admin.client.edit',{id:client.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.client.delete',{ id:client.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{client.firstname}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.client.add')}}" class="btn btn-primary">Create a new Client</a>
+    </div>
+</div>  
+
+{% endblock %}

@@ -24,6 +24,11 @@ class User extends BaseUser
      */
     private $products;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="user")
+     */
+    private $clients;
+
     public function __construct()
     {
         parent::__construct();
@@ -66,6 +71,26 @@ class User extends BaseUser
     public function setProducts($products)
     {
         $this->products = $products;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of clients
+     */ 
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * Set the value of clients
+     *
+     * @return  self
+     */ 
+    public function setClients($clients)
+    {
+        $this->clients = $clients;
 
         return $this;
     }
