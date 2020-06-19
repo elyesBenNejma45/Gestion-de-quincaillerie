@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class EditProductType extends AbstractType
 {
@@ -21,6 +22,7 @@ class EditProductType extends AbstractType
         $builder
         ->add('libelle',TextType::class,['label' => ''])
         ->add('price',TextType::class, ['label' => ''])
+        ->add('quantity',IntegerType::class, ['label' => ''])
         ->add('tva',TextType::class,['label' => ''])
         ->add('description',TextType::class,['label' => ''])
         ->add('storeDate',DateType::class,['label' => ''])

@@ -54,7 +54,8 @@ class ProductController extends Controller
         $product->setUser($user);
         
         if($form->isSubmitted() && $form->isValid()){
-            $image = $form->get('image')->getData();        
+            $image = $form->get('image')->getData();
+            $quantity = $form->get('quantity')->getData();        
             if($image) {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
@@ -68,6 +69,12 @@ class ProductController extends Controller
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $product->setImage($newFilename);
+            }
+
+            if ($quantity>0) {
+                $product->setStatus('available');
+            } else {
+                $product->setStatus('unaivailable');
             }
             $em->persist($product);
             $em->flush();            
@@ -97,6 +104,7 @@ class ProductController extends Controller
                 
         if($form->isSubmitted()&& $form->isValid()){
             $image = $form->get('image')->getData();        
+            $quantity = $form->get('quantity')->getData();        
             if($image) {
                 $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 $newFilename = $originalFilename.'-'.uniqid().'.'.$image->guessExtension();
@@ -111,6 +119,11 @@ class ProductController extends Controller
                 // instead of its contents
                 $product->setImage($newFilename);
             }
+            if ($quantity>0) {
+                $product->setStatus('available');
+            } else {
+                $product->setStatus('unaivailable');
+            }            
             $em->flush();
             $this->addFlash("success", "modified with succes ");
             return $this->redirectToRoute("admin.product.index");

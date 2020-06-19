@@ -43,6 +43,13 @@ class Product
     private $tva;
 
     /**
+     * @var integer|null
+     *
+     * @ORM\Column(name="quantity", type="integer", nullable=true)
+     */
+    private $quantity;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
@@ -59,7 +66,7 @@ class Product
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="status", type="boolean", nullable=true)
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
      */
     private $status;
 
@@ -131,6 +138,29 @@ class Product
     }
 
     /**
+     * Get quantity.
+     *
+     * @return integer|null
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+    /**
+     * Set quantity.
+     *
+     * @param integer|null $quantity
+     *
+     * @return Product
+     */
+    public function setQuantity($quantity = null)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
      * Get price.
      *
      * @return float|null
@@ -139,7 +169,6 @@ class Product
     {
         return $this->price;
     }
-
     /**
      * Set tva.
      *
@@ -215,7 +244,7 @@ class Product
     /**
      * Set status.
      *
-     * @param bool|null $status
+     * @param string|null $status
      *
      * @return Product
      */
@@ -229,7 +258,7 @@ class Product
     /**
      * Get status.
      *
-     * @return bool|null
+     * @return string|null
      */
     public function getStatus()
     {
