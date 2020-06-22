@@ -29,6 +29,11 @@ class User extends BaseUser
      */
     private $clients;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="user")
+     */
+    private $commandes;
+
     public function __construct()
     {
         parent::__construct();
@@ -91,6 +96,26 @@ class User extends BaseUser
     public function setClients($clients)
     {
         $this->clients = $clients;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of commandes
+     */ 
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Set the value of commandes
+     *
+     * @return  self
+     */ 
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
 
         return $this;
     }

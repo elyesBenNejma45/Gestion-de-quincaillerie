@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+{% block title "Manage Lcommande"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Manage lcommande </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+        <tr>
+        <th> countNum </th>
+        <th> quantity </th>
+        <th> tva </th>
+        <th> lig </th>
+        <th> Product's Name </th>
+        </tr>
+        </thread>
+        <tbody>
+            {% for lcommande in lcommandes|sort((a,b) => a.countNum <=> b.countNum) %}
+            <tr>
+                <td> {{lcommande.countNum}}</td>
+                <td> {{lcommande.quantity}}</td>
+                <td> {{lcommande.tva}}</td>
+                <td> {{lcommande.lig}}</td>
+ 
+                {% if lcommande.product is null %}
+                    <td> No product </td>
+                {% else %}    
+                    <td> {{lcommande.product.libelle}}</td>
+                {% endif %}
+                <td> 
+                    <a href="{{path('admin.lcommande.edit',{id:lcommande.id})}}" class= "btn btn-success"> Edit </a>
+                    <form method ="POST" action="{{path('admin.lcommande.delete',{ id:lcommande.id }) }}" style = "display:inline-block" onsubmit ="return confirm ('Are you sure? {{lcommande.countNum}} will be deleted')">
+                        <input type ="hidden" name = "_method" value = "DELETE"></input>
+                        <button class ="btn btn-danger"> Delete  </button>  
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.lcommande.add')}}" class="btn btn-primary">Create a new Lcommande</a>
+    </div>
+</div>  
+
+{% endblock %}

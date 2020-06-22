@@ -88,7 +88,12 @@ class Product
      * @ORM\JoinColumn(name="subCategory_id", referencedColumnName="id",onDelete="SET NULL",nullable=true)
      */
 
-    private $subCategory;    
+    private $subCategory;
+    
+        /**
+     * @ORM\OneToMany(targetEntity="Lcommande", mappedBy="product")
+     */
+    private $lcommandes;
     /**
      * Get id.
      *
@@ -325,6 +330,26 @@ class Product
     public function setSubCategory($subCategory)
     {
         $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lcommandes
+     */ 
+    public function getLcommandes()
+    {
+        return $this->lcommandes;
+    }
+
+    /**
+     * Set the value of lcommandes
+     *
+     * @return  self
+     */ 
+    public function setLcommandes($lcommandes)
+    {
+        $this->lcommandes = $lcommandes;
 
         return $this;
     }

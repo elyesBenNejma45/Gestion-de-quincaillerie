@@ -30,6 +30,9 @@ Encore
     .addEntry('price-range', './assets/js/price-range.js')
     .addEntry('responsive', './assets/js/responsive.js')
     .addEntry('footer', './assets/js/footer.js')
+    .addEntry('comm', './assets/js/comm.js')
+    .addEntry('example', './assets/js/example.js')
+    .addEntry('printCom', './assets/js/printCom.js')
 
 
     //.addEntry('page1', './assets/js/page1.js')

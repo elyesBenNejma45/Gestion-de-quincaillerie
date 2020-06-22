@@ -107,6 +107,30 @@
       "css": [
         "/build/footer.css"
       ]
+    },
+    "comm": {
+      "js": [
+        "/build/runtime.js",
+        "/build/comm.js"
+      ],
+      "css": [
+        "/build/comm.css"
+      ]
+    },
+    "example": {
+      "js": [
+        "/build/runtime.js",
+        "/build/example.js"
+      ]
+    },
+    "printCom": {
+      "js": [
+        "/build/runtime.js",
+        "/build/printCom.js"
+      ],
+      "css": [
+        "/build/printCom.css"
+      ]
     }
   }
 }

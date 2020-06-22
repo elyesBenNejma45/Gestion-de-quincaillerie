@@ -65,6 +65,11 @@ class Client
     private $user;
 
     /**
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="client")
+     */
+    private $commandes;    
+
+    /**
      * Get id.
      *
      * @return int
@@ -210,6 +215,26 @@ class Client
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of commandes
+     */ 
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Set the value of commandes
+     *
+     * @return  self
+     */ 
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
 
         return $this;
     }

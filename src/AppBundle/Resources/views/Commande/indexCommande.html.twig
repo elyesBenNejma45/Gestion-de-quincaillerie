@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+{% block title "Commande index"%} 
+{% block body %}
+
+
+<div class="container mt-4">
+    <h1> Commande index  </h1>
+    {% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}    
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>Commande Number</th>
+                <th>Commande date</th>
+                <th>observation</th>
+                <th>Total without Taxes</th>
+                <th>Total TVA</th>
+                <th>Total</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.comNum }}</td>
+                <td>{{ commande.dateComm ? commande.dateComm|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.observation }}</td>
+                <td>{{ commande.totht }}</td>
+                <td>{{ commande.tottva }}</td>
+                <td>{{ commande.totht + commande.tottva }}</td>
+                <td>
+                    <a href="{{path('admin.commande.ShowLcommande',{id:commande.id})}}" class= "btn btn-success"> Show </a>
+                    <a href="{{path('admin.commande.ShowLcommandePdf',{id:commande.id})}}" class= "btn btn-info"> Download </a>                   
+                    <form method="post" action="{{ path('admin.commande.delete', {'id': commande.id}) }}" style = "display:inline-block" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{path('admin.commande.new')}}" class="btn btn-primary">Create a new Commande</a>
+    </div>
+</div>  
+
+{% endblock %}
