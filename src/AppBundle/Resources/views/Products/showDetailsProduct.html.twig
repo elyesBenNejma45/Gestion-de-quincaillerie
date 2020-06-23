@@ -1,0 +1,37 @@
+{% extends 'default/index.html.twig' %}
+
+				{% block product %}
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="{{ asset('uploads/products/' ~ product.image) }}" alt="" />
+							</div>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2>{{product.libelle}}</h2>
+								<p>Web ID: {{product.Id}}</p>
+								<img src="images/product-details/rating.png" alt="" />
+								<span>
+									<span>TN DT {{product.price}}</span>
+									<label>Quantity:</label>
+									<input type="text" value={{product.quantity}} />
+								</span>
+								<p><b>Availability:</b> {{product.status}}</p>
+								<p><b>Condition:</b> New</p>
+								<p><b>Brand:</b> {{product.subCategory.name}}</p>
+								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->               
+                {% endblock %}	

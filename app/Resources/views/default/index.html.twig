@@ -137,21 +137,21 @@
 									<div class="single-products">
 											<div class="productinfo text-center">
 												<img src="{{ asset('uploads/products/' ~ product.image) }}" alt="" />
-												<h2>${{product.price}}</h2>
+												<h2>TN DT {{product.price}}</h2>
 												<p>{{product.libelle}}</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<a href="{{path('admin.product.showProductDetails',{id:product.id})}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>See Product</a>
 											</div>
 											<div class="product-overlay">
 												<div class="overlay-content">
 													<h2>${{product.price}}</h2>
 													<p>{{product.libelle}}</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="{{path('admin.product.showProductDetails',{id:product.id})}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>See Product</a>
 												</div>
 											</div>
 									</div>
 									<div class="choose">
 										<ul class="nav nav-pills nav-justified">
-											<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 										</ul>
 									</div>

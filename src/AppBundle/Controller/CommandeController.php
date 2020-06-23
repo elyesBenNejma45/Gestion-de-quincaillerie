@@ -125,7 +125,15 @@ class CommandeController extends Controller
             $totva = $totva + $monttva;
             $totttc = $totttc + ($totht + $totva);
             }
-            
+
+            if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+                // Execute some php code here
+                $commande->setStatus('true');
+
+             } else if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+                // Execute some php code here
+                $commande->setStatus('false');
+             }
             $commande->setComNum($numc);
             $commande->setTotht($totht);
             $commande->setTottva($totva);
@@ -160,7 +168,7 @@ class CommandeController extends Controller
     }
 
     /**
-     * @Route("/commande/{id}", name="admin.commande.delete", methods="DELETE")
+     * @Route("admin/commande/{id}", name="admin.commande.delete", methods="DELETE")
      */
     public function delete(Request $request, Commande $commande): Response
     {
@@ -243,4 +251,33 @@ class CommandeController extends Controller
         return $this->redirectToRoute('admin.commande.new'); 
 
     }
+    /**
+     * @Route("admin/commande/notConfirmed", name="admin.commande.CommandeNotConfirmed",methods="GET")
+     */
+    public function CommandeNotConfirmed()
+    {
+        $em = $this->getDoctrine()->getManager();  
+        $commandes = $em->getRepository(Commande::class)->findNotConfirmedCommand();
+        return $this->render('AppBundle:Commande:indexNotConfirmedCommande.html.twig', 
+        [
+            'commandes'=>$commandes,
+        ]);
+    }
+    /**
+     * @Route("admin/commande/confirm/{id}", name="admin.commande.confirm", methods="GET|POST")
+     *@param Commande $commande
+     *@param Request $request
+     *return Symfony\Component\HttpFoundation\Response
+     */
+    public function confirmCommande(Request $request)
+    {
+        $searchId =  $request->get('id');
+        $em = $this->getDoctrine()->getManager();  
+        $commande = $em->getRepository(Commande::class)->find($searchId);
+        $commande->setStatus('true');
+        $em->persist($commande);
+        $em->flush();
+
+        return $this->redirectToRoute('admin.commande.CommandeNotConfirmed'); 
+    }        
 }

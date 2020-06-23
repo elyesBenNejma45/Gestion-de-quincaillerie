@@ -33,7 +33,8 @@
                 <td>{{ commande.totht + commande.tottva }}</td>
                 <td>
                     <a href="{{path('admin.commande.ShowLcommande',{id:commande.id})}}" class= "btn btn-success" target="_blank"> Show </a>
-                    <a href="{{path('admin.commande.ShowLcommandePdf',{id:commande.id})}}" class= "btn btn-info"> Download </a>                   
+                    <a href="{{path('admin.commande.ShowLcommandePdf',{id:commande.id})}}" class= "btn btn-info"> Download </a>
+                    <a href="{{path('admin.commande.confirm',{id:commande.id})}}" class= "btn btn-warning"> Confirm </a>
                      {% if is_granted("ROLE_ADMIN") %}
                     <form method="post" action="{{ path('admin.commande.delete', {'id': commande.id}) }}" style = "display:inline-block" onsubmit="return confirm('Are you sure you want to delete this item?');">
                         <input type="hidden" name="_method" value="DELETE">

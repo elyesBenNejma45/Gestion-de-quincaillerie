@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findNotConfirmedCommand()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT C FROM AppBundle:Commande C WHERE C.status = 'false' "
+            )
+            ->getResult();
+    }
 }

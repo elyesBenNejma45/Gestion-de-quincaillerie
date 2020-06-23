@@ -41,7 +41,14 @@ class Commande
      * @ORM\Column(name="observation", type="string", length=255)
      */
     private $observation;
-
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
     /**
      * @var string
      *
@@ -264,6 +271,30 @@ class Commande
     public function setClient($client)
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     *
+     * @return  string
+     */ 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @param  string  $status
+     *
+     * @return  self
+     */ 
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
 
         return $this;
     }

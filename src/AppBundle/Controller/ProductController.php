@@ -166,5 +166,23 @@ class ProductController extends Controller
             "categories" => $categories            
 
         ]);
-    }      
+    }
+    /**
+     * @Route("/showProductDetails/{id}", name="admin.product.showProductDetails")
+     */
+    public function showProductDetailsAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        $productId =  $request->get('id');
+        $product = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->find($productId);
+        $em = $this->getDoctrine()->getManager(); 
+        $categories = $em->getRepository(Category::class)->findAll();
+        return $this->render('AppBundle:Products:showDetailsProduct.html.twig', [
+            "product" => $product,
+            "categories" => $categories            
+
+        ]);
+    }            
 }

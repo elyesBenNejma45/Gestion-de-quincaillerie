@@ -31,7 +31,7 @@
                     <li><a href=" {{ path('admin.commande.index') }}">Bill</a></li>
                     <li>
                       {% if is_granted("ROLE_ADMIN") %}
-                      <a href="#">Confirm Bill</a>
+                      <a href="{{ path('admin.commande.CommandeNotConfirmed') }}">Confirm Bill</a>
                       {% endif %}    
                     </li>
                   </ul>
