@@ -12,6 +12,8 @@ use AppBundle\Form\CommandeType;
 use AppBundle\Form\LcommandeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -279,5 +281,55 @@ class CommandeController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('admin.commande.CommandeNotConfirmed'); 
-    }        
+    }
+    /**
+     * @Route("/showCommandeStats", name="admin.commande.showCommandeStats")
+     */
+    public function CommandeStatisticsAction()
+    {
+
+        $count =0;
+        $countu = 0;
+        $pieChart = new PieChart();
+        $em = $this->getDoctrine()->getManager();
+        $availablecommandes = $em->getRepository(Commande::class)->findConfirmedCommand();
+        $unvailablecommandes = $em->getRepository(Commande::class)->findNotConfirmedCommand();
+        for ($i = 0; $i <= sizeof($availablecommandes); $i++) {
+            $count +=1;
+        }
+        for ($j= 0; $j <= sizeof($unvailablecommandes); $j++) {
+            $countu +=1;
+        }        
+            $pieChart->getData()->setArrayToDataTable(
+                [
+                    
+                    ['status', 'percentage'],
+                    [ 'confirmed', $count ],
+                    [ 'not confirmed', $countu ],
+
+                ]
+            );
+         
+
+        $pieChart->getOptions()->setPieSliceText('label');
+        $pieChart->getOptions()->setTitle('Commande Status');
+        $pieChart->getOptions()->setPieStartAngle(100);
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getLegend()->setPosition('none');
+    
+        $bar = new BarChart();
+        $bar->getData()->setArrayToDataTable([
+            ['status', 'percentage'],
+            [ 'confirmed', $count ],
+            [ 'not confirmed', $countu ],
+        ]);
+        $bar->getOptions()->setTitle('Commande Status');
+        $bar->getOptions()->getHAxis()->setTitle('Commande Status');
+        $bar->getOptions()->getHAxis()->setMinValue(0);
+        $bar->getOptions()->getVAxis()->setTitle('Commande');
+        $bar->getOptions()->setWidth(900);
+        $bar->getOptions()->setHeight(500);
+        return $this->render('AppBundle:Commande:showCommandeStats.html.twig', array('piechart' => $pieChart, 'bar' => $bar));
+    }             
 }

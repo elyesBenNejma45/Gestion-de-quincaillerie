@@ -7,8 +7,12 @@ use AppBundle\Entity\Category;
 use AppBundle\Form\ProductType;
 use AppBundle\Form\EditProductType;
 use Symfony\Component\HttpFoundation\Request;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Histogram;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\SankeyDiagram;
 
 class ProductController extends Controller
 {
@@ -184,5 +188,55 @@ class ProductController extends Controller
             "categories" => $categories            
 
         ]);
-    }            
+    }
+    /**
+     * @Route("/showProductStats", name="admin.product.showProductStats")
+     */
+    public function ProductStatisticsAction()
+    {
+
+        $count =0;
+        $countu = 0;
+        $pieChart = new PieChart();
+        $em = $this->getDoctrine()->getManager();
+        $availableProducts = $em->getRepository(Product::class)->findAvailaibleProduct();
+        $unvailableProducts = $em->getRepository(Product::class)->findNotAvailaibleProduct();
+        for ($i = 0; $i <= sizeof($availableProducts); $i++) {
+            $count +=1;
+        }
+        for ($j= 0; $j <= sizeof($unvailableProducts); $j++) {
+            $countu +=1;
+        }        
+            $pieChart->getData()->setArrayToDataTable(
+                [
+                    
+                    ['availability', 'percentage'],
+                    [ 'available', $count ],
+                    [ 'unavailable', $countu ],
+
+                ]
+            );
+         
+
+        $pieChart->getOptions()->setPieSliceText('label');
+        $pieChart->getOptions()->setTitle('Product Availability');
+        $pieChart->getOptions()->setPieStartAngle(100);
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getLegend()->setPosition('none');
+    
+        $bar = new BarChart();
+        $bar->getData()->setArrayToDataTable([
+            ['availability', 'percentage'],
+            [ 'available', $count ],
+            [ 'unavailable', $countu ],
+        ]);
+        $bar->getOptions()->setTitle('Product Availability');
+        $bar->getOptions()->getHAxis()->setTitle('Product Availability');
+        $bar->getOptions()->getHAxis()->setMinValue(0);
+        $bar->getOptions()->getVAxis()->setTitle('Product');
+        $bar->getOptions()->setWidth(900);
+        $bar->getOptions()->setHeight(500);
+        return $this->render('AppBundle:Products:showProductStats.html.twig', array('piechart' => $pieChart, 'bar' => $bar));
+    }    
 }

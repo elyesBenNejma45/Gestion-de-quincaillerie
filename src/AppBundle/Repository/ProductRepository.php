@@ -35,7 +35,7 @@ class ProductRepository extends EntityRepository
             )
             ->getResult();
     }
-    
+
     /**
     * return SubCategory[]
     */
@@ -49,5 +49,22 @@ class ProductRepository extends EntityRepository
         ->getQuery();
 
     return $query->getResult();
-    }     
+    }
+
+    public function findAvailaibleProduct()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT P FROM AppBundle:Product P WHERE P.status = 'available'"
+            )
+            ->getResult();
+    }
+
+    public function findNotAvailaibleProduct()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT P FROM AppBundle:Product P WHERE P.status = 'unavailable'"            )
+            ->getResult();
+    }         
 }

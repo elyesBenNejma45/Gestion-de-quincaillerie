@@ -52,7 +52,14 @@
     </table>
     <div class="text-right">
         <a href="{{path('admin.commande.new')}}" class="btn btn-primary">Create a new Commande</a>
-    </div>
+    </div>        
+        <div class="text" style = "display:inline-block">
+            <a href="{{path('admin.commande.showCommandeStats')}}" class="btn btn-warning">See Statistics</a>
+        </div>
+        <div class="text" style = "display:inline-block">
+            <a href="" class="btn btn-info">Export</a>
+        </div>
+
 </div>  
 
 {% endblock %}

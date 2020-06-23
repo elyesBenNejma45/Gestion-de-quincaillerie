@@ -18,4 +18,12 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
             )
             ->getResult();
     }
+    public function findConfirmedCommand()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT C FROM AppBundle:Commande C WHERE C.status = 'true' "
+            )
+            ->getResult();
+    }    
 }
