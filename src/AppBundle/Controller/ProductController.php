@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use SplTempFileObject;
 use AppBundle\Entity\Product;
 use AppBundle\Entity\Category;
 use AppBundle\Form\ProductType;
@@ -10,9 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\BarChart;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Histogram;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use CMEN\GoogleChartsBundle\GoogleCharts\Charts\SankeyDiagram;
 
 class ProductController extends Controller
 {
@@ -238,5 +237,25 @@ class ProductController extends Controller
         $bar->getOptions()->setWidth(900);
         $bar->getOptions()->setHeight(500);
         return $this->render('AppBundle:Products:showProductStats.html.twig', array('piechart' => $pieChart, 'bar' => $bar));
-    }    
-}
+    }
+    
+    /**
+     * @Route("admin/product/export", name="admin.product.export", methods="GET")
+     */
+    public function exportProductAction()
+    {
+        // $writer = $this->container->get('egyg33k.csv.writer');
+        // $em = $this->getDoctrine()->getManager();
+        // $products = $em->getRepository(Product::class)->findAll();
+        // $csv = $writer::createFromFileObject(new \SplTempFileObject());
+        // $csv->insertOne(['libelle','price','tva','description','store Date','status','image','subCategory','quantity','user']);
+        // foreach($products as $product){
+        //     $csv->insertOne([$product->getLibelle(), $product->getPrice(), $product->getTva(),
+        //      $product->getDescription(), $product->getStoreDate()->format('Y-m-d H:i:s'), 
+        //      $product->getStatus(), $product->getImage(),$product->getSubCategory()->getName(), 
+        //      $product->getQuantity(),$product->getUser()->getUsername()]); 
+        // }
+        // $csv->output('products.csv');
+        // die("export");
+    }                 
+}        

@@ -331,5 +331,24 @@ class CommandeController extends Controller
         $bar->getOptions()->setWidth(900);
         $bar->getOptions()->setHeight(500);
         return $this->render('AppBundle:Commande:showCommandeStats.html.twig', array('piechart' => $pieChart, 'bar' => $bar));
-    }             
+    }
+    
+    /**
+     * @Route("admin/commande/export", name="admin.commande.export", methods="GET")
+     */
+    public function exportCommandeAction()
+    {
+        $writer = $this->container->get('egyg33k.csv.writer');
+        $em = $this->getDoctrine()->getManager();
+        $commandes = $em->getRepository(Commande::class)->findAll();
+        $csv = $writer::createFromFileObject(new \SplTempFileObject());
+        $csv->insertOne(['commande Number', 'commande Date', 'observation','total hors taxes','total Tva','status','total to pay','client','user']);
+        foreach($commandes as $commande){
+            $csv->insertOne([$commande->getComNum(), $commande->getDateComm()->format('Y-m-d H:i:s'), $commande->getObservation(),
+            $commande->getTotht(), $commande->getTottva(), $commande->getStatus(), $commande->getTotttc(), $commande->getUser()->getUsername(),  
+            $commande->getClient()->getFirstname()]); 
+        }
+        $csv->output('commandes.csv');
+        die("export");
+    }                 
 }
